@@ -10,7 +10,7 @@
 
 #include "astra_ui_core.h"
 
-void astra_set_font(void *_font)
+void astra_set_font(const void *_font)
 {
     if (_font != astra_font)
         oled_set_font(_font);
