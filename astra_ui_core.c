@@ -18,46 +18,46 @@ bool in_astra = false;
 void ad_astra()
 {
   /**自行修改**/
-  // if (in_astra) return;
-  // static int64_t _key_press_span = 0;
-  // static uint32_t _key_start_time = 0;
-  // static bool _key_clicked = false;
-  // static char _msg[100] = {};
+  if (in_astra) return;
+  static int64_t _key_press_span = 0;
+  static uint32_t _key_start_time = 0;
+  static bool _key_clicked = false;
+  static char _msg[100] = {};
 
-  // if (HAL_GPIO_ReadPin(KEY1_GPIO_Port, KEY1_Pin) == GPIO_PIN_RESET || HAL_GPIO_ReadPin(KEY2_GPIO_Port, KEY2_Pin) == GPIO_PIN_RESET)
-  // {
-  //   if (!_key_clicked)
-  //   {
-  //     _key_clicked = true;
-  //     _key_start_time = get_ticks();
-  //     //变量上限是0xFFFF 65535
-  //   }
-  //   if (get_ticks() - _key_start_time > 1000 && _key_clicked)
-  //   {
-  //     _key_press_span = get_ticks() - _key_start_time;
-  //     if (_key_press_span <= 2500)
-  //     {
-  //       sprintf(_msg, "继续长按%.2f秒进入.", (2500 - _key_press_span) / 1000.0f);
-  //       astra_push_info_bar(_msg, 2000);
-  //     } else if (_key_press_span > 2500)
-  //     {
-  //       astra_push_info_bar("玩得开心! :p", 2000);
-  //       in_astra = true;
-  //       astra_init_list();
-  //       _key_clicked = false;
-  //       _key_start_time = 0;
-  //       _key_press_span = 0;
-  //     }
-  //   }
-  // } else
-  // {
-  //   _key_clicked = false;
-  //   if (_key_press_span != 0)
-  //   {
-  //     astra_push_info_bar("bye!", 2000);
-  //     _key_press_span = 0;
-  //   }
-  // }
+  if (HAL_GPIO_ReadPin(KEY1_GPIO_Port, KEY1_Pin) == GPIO_PIN_RESET || HAL_GPIO_ReadPin(KEY2_GPIO_Port, KEY2_Pin) == GPIO_PIN_RESET)
+  {
+    if (!_key_clicked)
+    {
+      _key_clicked = true;
+      _key_start_time = get_ticks();
+      //变量上限是0xFFFF 65535
+    }
+    if (get_ticks() - _key_start_time > 1000 && _key_clicked)
+    {
+      _key_press_span = get_ticks() - _key_start_time;
+      if (_key_press_span <= 2500)
+      {
+        sprintf(_msg, "继续长按%.2f秒进入.", (2500 - _key_press_span) / 1000.0f);
+        astra_push_info_bar(_msg, 2000);
+      } else if (_key_press_span > 2500)
+      {
+        astra_push_info_bar("玩得开心! :p", 2000);
+        in_astra = true;
+        astra_init_list();
+        _key_clicked = false;
+        _key_start_time = 0;
+        _key_press_span = 0;
+      }
+    }
+  } else
+  {
+    _key_clicked = false;
+    if (_key_press_span != 0)
+    {
+      astra_push_info_bar("bye!", 2000);
+      _key_press_span = 0;
+    }
+  }
   /**自行修改**/
 }
 
